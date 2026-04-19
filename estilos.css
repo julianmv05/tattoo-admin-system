@@ -150,7 +150,7 @@ hr {
     font-size: 16px;
     cursor: pointer;
     appearance: none; 
-    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"292.4"%20height%3D"292.4"><path%20fill%3D"%23FFFFFF"%20d%3D"M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z"%2F><%2Fsvg>'); /* Flecha blanca personalizada */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"292.4"%20height%3D"292.4"><path%20fill%3D"%23FFFFFF"%20d%3D"M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z"%2F><%2Fsvg>'); 
     background-repeat: no-repeat;
     background-position: right 15px top 50%;
     background-size: 12px auto;
@@ -160,3 +160,148 @@ hr {
     border: 2px solid #a333ff;
     outline: none;
 }
+
+
+.dashboard-body {
+    display: flex;
+    background-color: #000;
+    align-items: flex-start;
+    font-size: 14px; 
+}
+
+
+.sidebar {
+    width: 200px; 
+    height: 100vh;
+    background-color: #121212;
+    padding: 15px;
+    border-right: 1px solid #282828;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header { text-align: center; padding: 10px 0; }
+.sidebar .logo-text { font-size: 24px; }
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+    flex-grow: 1;
+}
+
+.nav-links li {
+    margin-bottom: 5px;
+    border-radius: 6px;
+}
+
+.nav-links li.active { background-color: rgba(30, 215, 96, 0.1); border-left: 3px solid #1ed760; }
+.nav-links li.active a { color: #1ed760; font-weight: bold; }
+.nav-links li:not(.active):hover { background-color: #1a1a1a; }
+
+.nav-links a {
+    color: #b3b3b3;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    font-size: 13px;
+}
+
+.nav-links .separator { border-top: 1px solid #282828; margin: 15px 0; }
+
+
+.main-content {
+    flex-grow: 1;
+    padding: 25px 35px;
+    width: calc(100% - 200px);
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #282828;
+    padding-bottom: 15px;
+}
+
+.main-header h1 { font-size: 22px; margin: 0; }
+.main-header .subtitle { color: #a7a7a7; margin: 5px 0 0; font-size: 13px; }
+
+.header-actions { display: flex; gap: 10px; }
+
+.btn-primary, .btn-secondary {
+    padding: 8px 16px;
+    border-radius: 500px;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary { background-color: #1ed760; color: black; }
+.btn-primary:hover { background-color: #1fdf64; transform: scale(1.03); }
+.btn-secondary { background-color: #2a2a2a; color: white; border: 1px solid #727272; }
+.btn-secondary:hover { background-color: #333; }
+
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.kpi-card {
+    background-color: #121212;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #282828;
+}
+
+.kpi-card.warning { border-color: #e67e22; }
+
+.kpi-title { font-size: 12px; color: #a7a7a7; font-weight: bold; text-transform: uppercase; }
+.kpi-value { font-size: 26px; font-weight: bold; color: white; margin: 8px 0; }
+.kpi-card .kpi-value { color: white; } 
+
+.kpi-trend { font-size: 11px; color: #a7a7a7; }
+.kpi-trend.pos { color: #1ed760; }
+
+
+.data-panels {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.panel {
+    background-color: #121212;
+    border-radius: 8px;
+    border: 1px solid #282828;
+    padding: 15px;
+}
+
+.panel-header { margin-bottom: 15px; border-bottom: 1px solid #282828; padding-bottom: 10px; }
+.panel-header h3 { font-size: 16px; margin: 0; color: white; }
+
+
+.chart-container {
+    position: relative;
+    height: 250px; 
+    width: 100%;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.data-table th { text-align: left; color: #a7a7a7; padding: 10px; border-bottom: 1px solid #282828; }
+.data-table td { padding: 10px; border-bottom: 1px solid #1a1a1a; color: #e0e0e0; }
+
+/* Estados de Cita */
+.status { padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; }
+.status.confirmada { background-color: rgba(30, 215, 96, 0.1); color: #1ed760; }
+.status.pendiente { background-color: rgba(243, 156, 18, 0.1); color: #f39c12; }
