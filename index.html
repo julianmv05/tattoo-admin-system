@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso Staff | Tattoo Studio</title>
+    <title>Acceso Staff | Tattoo Studio Admin</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
@@ -14,13 +14,22 @@
 
         <form action="menu.html">
             <div class="input-container">
-                <label>Usuario o Correo</label>
-                <input type="text" placeholder="Usuario de staff" required>
+                <label for="usuario">Usuario o Correo</label>
+                <input type="text" id="usuario" placeholder="Usuario de staff" required>
             </div>
 
             <div class="input-container">
-                <label>Contraseña</label>
-                <input type="password" placeholder="Escribe tu contraseña" required>
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Escribe tu contraseña" required>
+            </div>
+
+            <div class="input-container">
+                <label for="user-role">Empleado/Administrador</label>
+                <select id="user-role" class="custom-select" required>
+                    <option value="" disabled selected>Selecciona tu rango</option>
+                    <option value="empleado">Empleado</option>
+                    <option value="admin">Administrador</option>
+                </select>
             </div>
 
             <div class="remember-me">
@@ -35,7 +44,10 @@
         
         <hr>
 
-        <p class="signup">Solo personal autorizado. <br>Si tienes problemas, contacta al dueño.</p>
+        <p class="signup">
+            Solo personal autorizado. <br>
+            Si tienes problemas de acceso, contacta al administrador.
+        </p>
     </div>
 </body>
 </html>
