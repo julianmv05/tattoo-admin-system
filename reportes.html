@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reportes - TattooAdmin</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: white;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #111;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.logo span:first-child {
+    color: #00ff88;
+}
+
+.logo span:last-child {
+    color: #a020f0;
+    text-shadow: 0 0 10px #a020f0;
+}
+
+.filtros {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #1a1a1a;
+    color: white;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #00ff88;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00cc6a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: #1a1a1a;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
+
+tr:hover {
+    background: #1a1a1a;
+}
+
+.volver {
+    display: inline-block;
+    margin-top: 20px;
+    color: #a020f0;
+    text-decoration: none;
+}
+
+.volver:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="logo">
+        <span>Tattoo</span><span>Admin</span>
+    </h1>
+
+    <h2> Reportes</h2>
+
+    <div class="filtros">
+        <input type="text" id="buscarCliente" placeholder="Buscar cliente">
+        <input type="date" id="fecha">
+        <button onclick="filtrar()">Buscar</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Diseño</th>
+                <th>Precio</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody id="tablaReportes"></tbody>
+    </table>
+
+    <a href="menu.html" class="volver">⬅ Volver al menú</a>
+
+</div>
+
+<script>
+let datos = JSON.parse(localStorage.getItem("tatuajes")) || [];
+
+function mostrarDatos(lista) {
+    let tabla = document.getElementById("tablaReportes");
+    tabla.innerHTML = "";
+
+    lista.forEach(item => {
+        tabla.innerHTML += `
+            <tr>
+                <td>${item.cliente}</td>
+                <td>${item.diseno}</td>
+                <td>$${item.precio}</td>
+                <td>${item.fecha}</td>
+            </tr>
+        `;
+    });
+}
+
+function filtrar() {
+    let cliente = document.getElementById("buscarCliente").value.toLowerCase();
+    let fecha = document.getElementById("fecha").value;
+
+    let filtrados = datos.filter(item => {
+        return (
+            item.cliente.toLowerCase().includes(cliente) &&
+            (fecha === "" || item.fecha === fecha)
+        );
+    });
+
+    mostrarDatos(filtrados);
+}
+
+mostrarDatos(datos);
+</script>
+
+</body>
+</html>
