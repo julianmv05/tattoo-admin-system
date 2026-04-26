@@ -11,60 +11,54 @@
     <h1 class="logo-text">Tattoo<span>Admin</span></h1> 
     <h2>Registro de Cita / Servicio</h2>
 
-    <form id="registroForm">
-
+    <form action="procesar.php" method="POST">
+        
         <h3>Datos del Cliente</h3>
-
         <div class="input-group">
             <div class="input-container">
                 <label>Nombre</label>
-                <input type="text" required>
+                <input type="text" name="nombre_cliente" required>
             </div>
-
             <div class="input-container">
                 <label>Teléfono</label>
-                <input type="text" required>
+                <input type="text" name="telefono">
             </div>
         </div>
 
         <h3>Detalles del Servicio</h3>
-
         <div class="input-group">
             <div class="input-container">
                 <label>Tipo de Tatuaje</label>
-                <select required>
-                    <option disabled selected>Selecciona</option>
-                    <option value="500">Pequeño - $500</option>
-                    <option value="1500">Mediano - $1500</option>
-                    <option value="3000">Grande - $3000</option>
+                <select name="tatuador" required>
+                    <option value="" disabled selected>Selecciona</option>
+                    <option value="Tatuaje Pequeño">Pequeño - $500</option>
+                    <option value="Tatuaje Mediano">Mediano - $1500</option>
+                    <option value="Tatuaje Grande">Grande - $3000</option>
                 </select>
             </div>
-
             <div class="input-container">
                 <label>Zona del Cuerpo</label>
-                <input type="text" placeholder="Ej. brazo, espalda">
+                <input type="text" name="zona">
             </div>
         </div>
 
         <div class="input-group">
             <div class="input-container">
                 <label>Fecha de Cita</label>
-                <input type="date" required>
+                <input type="date" name="fecha" required>
             </div>
-
             <div class="input-container">
                 <label>Método de Pago</label>
-                <select required>
-                    <option disabled selected>Selecciona</option>
-                    <option>Efectivo</option>
-                    <option>Tarjeta</option>
-                    <option>Transferencia</option>
+                <select name="metodo_pago">
+                    <option value="" disabled selected>Selecciona</option>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                    <option value="Transferencia">Transferencia</option>
                 </select>
             </div>
         </div>
 
         <h3>Resumen</h3>
-
         <div class="resumen">
             <p>Precio: $<span id="precio">0</span></p>
         </div>
@@ -74,21 +68,20 @@
             <button type="reset" class="btn-secondary">Limpiar</button>
         </div>
 
-    </form>
+    </form> 
 </div>
 
 <script>
-    const select = document.querySelector("select");
-    const precio = document.getElementById("precio");
+    const select = document.querySelector("select[name='tatuador']");
+    const precioDisplay = document.getElementById("precio");
 
-    select.addEventListener("change", function() {
-        precio.textContent = this.value;
-    });
-
-    document.getElementById("registroForm").addEventListener("submit", function(e){
-        e.preventDefault();
-        alert("Registro guardado correctamente");
-    });
+    if (select) {
+        select.addEventListener("change", function() {
+            if(this.value === "Tatuaje Pequeño") precioDisplay.textContent = "500";
+            if(this.value === "Tatuaje Mediano") precioDisplay.textContent = "1500";
+            if(this.value === "Tatuaje Grande") precioDisplay.textContent = "3000";
+        });
+    }
 </script>
 
 </body>
